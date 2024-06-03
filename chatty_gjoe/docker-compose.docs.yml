@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: chatty_gjoe_local_docs
+    container_name: chatty_gjoe_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./chatty_gjoe:/app/chatty_gjoe:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
